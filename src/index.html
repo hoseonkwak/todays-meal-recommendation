@@ -12,15 +12,15 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="bg-gradient-to-br from-orange-50 to-yellow-50 min-h-screen">
+<body class="bg-gradient-to-br from-[#FFF8F0] via-[#FFF0E0] to-[#FFE8D6] min-h-screen">
   
   <!-- 메인 컨테이너 -->
   <div id="app" class="container mx-auto px-4 py-8">
     
     <!-- 헤더 -->
     <header class="text-center mb-12">
-      <h1 class="text-5xl font-bold text-orange-600 mb-2">오늘의밥</h1>
-      <p class="text-gray-600">오늘 뭐 먹을지 고민되시나요?</p>
+      <h1 class="text-6xl font-bold text-[#FF6B35] mb-3 drop-shadow-sm">🍽️ 오늘의밥</h1>
+      <p class="text-[#7F8C8D] text-lg">오늘 뭐 먹을지 고민되시나요?</p>
     </header>
 
     <!-- 카테고리 선택 (초기 화면) -->
@@ -34,25 +34,25 @@
     <!-- 추천 버튼 -->
     <div class="text-center mb-8">
       <button id="recommend-btn" 
-              class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-6 px-12 rounded-full text-2xl shadow-lg transform transition hover:scale-105">
+              class="bg-[#FF6B35] hover:bg-[#E55A2B] text-white font-bold py-6 px-12 rounded-full text-2xl shadow-2xl transform transition hover:scale-105 hover:shadow-[#FF6B35]/50 active:scale-95">
         🍽️ 추천받기
       </button>
     </div>
 
     <!-- 결과 표시 영역 -->
     <div id="result-section" class="hidden max-w-xl mx-auto">
-      <div class="bg-white rounded-2xl shadow-xl p-8 text-center">
-        <div class="mb-4">
-          <span id="result-category" class="inline-block bg-orange-100 text-orange-600 px-4 py-1 rounded-full text-sm font-semibold"></span>
+      <div class="bg-white rounded-3xl shadow-2xl p-10 text-center border-4 border-[#FFF8F0]">
+        <div class="mb-6">
+          <span id="result-category" class="inline-block bg-[#FFF8F0] text-[#FF6B35] px-5 py-2 rounded-full text-sm font-bold tracking-wide"></span>
         </div>
-        <h2 id="result-name" class="text-4xl font-bold text-gray-800 mb-4"></h2>
-        <p id="result-description" class="text-gray-600 mb-6"></p>
+        <h2 id="result-name" class="text-5xl font-bold text-[#2C3E50] mb-4 drop-shadow-sm"></h2>
+        <p id="result-description" class="text-[#7F8C8D] text-lg mb-8"></p>
         
         <div class="flex gap-4 justify-center">
-          <button id="retry-btn" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-3 px-6 rounded-lg">
+          <button id="retry-btn" class="bg-[#F7F7F7] hover:bg-[#E8E8E8] text-[#2C3E50] font-semibold py-3 px-8 rounded-xl transition shadow-md hover:shadow-lg">
             🔄 다시 추천
           </button>
-          <button id="reset-btn" class="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-3 px-6 rounded-lg">
+          <button id="reset-btn" class="bg-[#FF6B35] hover:bg-[#E55A2B] text-white font-semibold py-3 px-8 rounded-xl transition shadow-md hover:shadow-lg">
             🏠 처음으로
           </button>
         </div>
@@ -62,17 +62,17 @@
     <!-- 히스토리 버튼 -->
     <div class="fixed bottom-8 right-8">
       <button id="history-btn" 
-              class="bg-white hover:bg-gray-50 text-gray-700 font-semibold py-3 px-6 rounded-full shadow-lg">
+              class="bg-white hover:bg-[#FFF8F0] text-[#FF6B35] font-bold py-3 px-6 rounded-full shadow-xl border-2 border-[#FF6B35] transition hover:scale-105">
         📋 히스토리
       </button>
     </div>
 
     <!-- 히스토리 모달 -->
-    <div id="history-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4">
-      <div class="bg-white rounded-2xl shadow-xl max-w-md w-full p-6">
-        <div class="flex justify-between items-center mb-4">
-          <h3 class="text-2xl font-bold">추천 히스토리</h3>
-          <button id="close-modal" class="text-gray-500 hover:text-gray-700 text-2xl">&times;</button>
+    <div id="history-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 backdrop-blur-sm">
+      <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full p-8 border-4 border-[#FFF8F0]">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-3xl font-bold text-[#FF6B35]">📋 추천 히스토리</h3>
+          <button id="close-modal" class="text-[#7F8C8D] hover:text-[#FF6B35] text-3xl transition">&times;</button>
         </div>
         <div id="history-list" class="space-y-3 max-h-96 overflow-y-auto">
           <!-- JavaScript로 동적 생성 -->

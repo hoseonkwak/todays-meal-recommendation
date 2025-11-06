@@ -53,9 +53,9 @@ function toggleCategory(category, button) {
 // 카테고리 버튼 스타일 업데이트
 function updateCategoryButtonStyle(button, isSelected) {
   if (isSelected) {
-    button.className = 'category-btn px-6 py-3 rounded-full font-semibold transition border-2 bg-orange-500 text-white border-orange-500';
+    button.className = 'category-btn px-6 py-3 rounded-full font-bold transition border-2 bg-[#FF6B35] text-white border-[#FF6B35] shadow-lg';
   } else {
-    button.className = 'category-btn px-6 py-3 rounded-full font-semibold transition border-2 bg-white text-gray-700 border-gray-300 hover:border-orange-500';
+    button.className = 'category-btn px-6 py-3 rounded-full font-semibold transition border-2 bg-white text-[#2C3E50] border-gray-300 hover:border-[#FF6B35] hover:text-[#FF6B35] shadow-md';
   }
 }
 
@@ -143,21 +143,21 @@ function showHistory() {
 // 히스토리 항목 생성
 function createHistoryItem(item) {
   const div = document.createElement('div');
-  div.className = 'bg-gray-50 rounded-lg p-4 hover:bg-gray-100 transition';
+  div.className = 'bg-[#FFF8F0] rounded-xl p-4 hover:bg-[#FFE8D6] transition shadow-sm hover:shadow-md';
   
   const date = new Date(item.timestamp);
   const timeString = `${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')}`;
   
   div.innerHTML = `
     <div class="flex justify-between items-start">
-      <div>
-        <span class="inline-block bg-orange-100 text-orange-600 px-2 py-1 rounded text-xs font-semibold mb-1">
+      <div class="flex-1">
+        <span class="inline-block bg-white text-[#FF6B35] px-3 py-1 rounded-full text-xs font-bold mb-2 shadow-sm">
           ${item.category}
         </span>
-        <h4 class="font-bold text-lg">${item.name}</h4>
-        <p class="text-sm text-gray-500">${timeString}</p>
+        <h4 class="font-bold text-lg text-[#2C3E50] mb-1">${item.name}</h4>
+        <p class="text-sm text-[#7F8C8D]">${timeString}</p>
       </div>
-      <button class="text-gray-400 hover:text-red-500" onclick="deleteHistoryItem('${item.timestamp}')">
+      <button class="text-[#BDC3C7] hover:text-[#E74C3C] transition text-xl ml-2" onclick="deleteHistoryItem('${item.timestamp}')">
         🗑️
       </button>
     </div>

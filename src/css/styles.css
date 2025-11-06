@@ -1,3 +1,18 @@
+/* CSS 변수 정의 */
+:root {
+  /* 테마 1: 따뜻한 오렌지 */
+  --primary: #FF6B35;
+  --primary-light: #FF8C61;
+  --primary-dark: #E55A2B;
+  --secondary: #F7931E;
+  --bg-primary: #FFF8F0;
+  --bg-secondary: #FFFFFF;
+  --accent: #004E89;
+  --text-primary: #2C3E50;
+  --text-secondary: #7F8C8D;
+  --text-light: #BDC3C7;
+}
+
 /* 커스텀 애니메이션 */
 @keyframes fadeIn {
   from {
@@ -10,47 +25,130 @@
   }
 }
 
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
 .animate-fade-in {
   animation: fadeIn 0.5s ease-out;
 }
 
+.animate-slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
 /* 스크롤바 스타일 */
 #history-list::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 #history-list::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #FFF8F0;
   border-radius: 10px;
 }
 
 #history-list::-webkit-scrollbar-thumb {
-  background: #fb923c;
+  background: #FF6B35;
   border-radius: 10px;
 }
 
 #history-list::-webkit-scrollbar-thumb:hover {
-  background: #f97316;
+  background: #E55A2B;
 }
 
 /* 버튼 호버 효과 */
 button {
   cursor: pointer;
   user-select: none;
+  transition: all 0.3s ease;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* 카테고리 버튼 애니메이션 */
+.category-btn {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.category-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
+}
+
+/* 결과 카드 그림자 효과 */
+#result-section > div {
+  box-shadow: 0 20px 60px rgba(255, 107, 53, 0.15);
+}
+
+/* 히스토리 모달 애니메이션 */
+#history-modal:not(.hidden) {
+  animation: fadeIn 0.3s ease-out;
+}
+
+#history-modal:not(.hidden) > div {
+  animation: slideIn 0.3s ease-out;
 }
 
 /* 모바일 최적화 */
 @media (max-width: 640px) {
   h1 {
-    font-size: 2.5rem;
+    font-size: 3rem;
   }
   
   #recommend-btn {
     font-size: 1.5rem;
-    padding: 1.5rem 2rem;
+    padding: 1.5rem 2.5rem;
   }
   
   #result-name {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
+  
+  #history-btn {
+    bottom: 1rem;
+    right: 1rem;
+    padding: 0.75rem 1.25rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* 태블릿 최적화 */
+@media (min-width: 641px) and (max-width: 1024px) {
+  h1 {
+    font-size: 4rem;
+  }
+  
+  #recommend-btn {
+    font-size: 1.75rem;
+    padding: 1.75rem 3rem;
+  }
+}
+
+/* 접근성 개선 */
+button:focus-visible {
+  outline: 3px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* 다크모드 지원 (선택사항) */
+@media (prefers-color-scheme: dark) {
+  /* 다크모드는 2단계에서 구현 예정 */
 }
