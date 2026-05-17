@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import { RouterLink, useRouter } from 'vue-router'
+import { resolveCoupangUrl } from '@/composables/coupangLink'
 import { buildResultActions } from '@/composables/resultActions'
 import { menus } from '@/data/menus'
 import { useHistoryStore } from '@/stores/history'
@@ -43,8 +44,27 @@ function onAction(action: ResultAction): void {
     }
     return
   }
+  if (action.type === 'mealkit' && menu.value) {
+    void openMealkitWithDeeplink(menu.value.name, action.url)
+    return
+  }
   if (action.url) {
     window.open(action.url, '_blank', 'noopener,noreferrer')
+  }
+}
+
+async function openMealkitWithDeeplink(menuName: string, fallbackUrl?: string): Promise<void> {
+  // 새 탭을 먼저 열어둔다 (브라우저 팝업 차단 회피 — 사용자 클릭 컨텍스트 안에서 window.open)
+  const target = window.open('about:blank', '_blank', 'noopener,noreferrer')
+  try {
+    const url = await resolveCoupangUrl(menuName)
+    if (target) {
+      target.location.href = url
+    } else if (fallbackUrl) {
+      window.location.href = url
+    }
+  } catch {
+    if (target && fallbackUrl) target.location.href = fallbackUrl
   }
 }
 

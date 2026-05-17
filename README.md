@@ -129,6 +129,59 @@ vercel --prod       # 프로덕션 배포
 
 ---
 
+## 쿠팡 파트너스 연동 (수익화)
+
+결과 화면의 **[집에서 만들기]** 액션이 쿠팡 검색으로 가는데, 환경변수가 설정되면 자동으로 **파트너스 추적 단축 URL**로 변환되어 수수료가 발생합니다.
+
+### 1. 쿠팡 파트너스 가입
+
+1. https://partners.coupang.com 접속 → 회원가입 (개인도 가능, 사업자등록증 ❌)
+2. **채널 등록** → 사이트 종류: 웹사이트, URL: `https://your-domain.vercel.app`
+3. 승인 대기 (보통 1~2 영업일)
+
+### 2. API 키 발급
+
+승인 후 대시보드 → **개발자센터** → **Open API 신청** → 발급:
+- `ACCESS_KEY` (공개 가능)
+- `SECRET_KEY` (절대 노출 ❌)
+
+### 3. Vercel 환경변수 등록
+
+Vercel 프로젝트 → **Settings → Environment Variables**:
+
+| Key | Value | Environment |
+|---|---|---|
+| `COUPANG_ACCESS_KEY` | 발급받은 access key | Production + Preview + Development |
+| `COUPANG_SECRET_KEY` | 발급받은 secret key | (동일) |
+
+저장 후 **Redeploy** (Deployments 탭 → 최신 빌드 → ⋯ → Redeploy).
+
+### 4. 동작 확인
+
+도메인에서 결정 → 결과 화면 → **[집에서 만들기]** 클릭. URL이 `https://link.coupang.com/a/xxxxx` 형태로 열리면 정상.
+
+### 동작 원리
+
+```
+[클릭] → 새 탭 즉시 열림 (about:blank)
+  ↓
+[/api/coupang-deeplink] (Vercel Serverless)
+  → HMAC-SHA256 서명 → 쿠팡 Deep Link API 호출
+  → 단축 URL 받음
+  ↓
+[새 탭에 단축 URL 주입]
+  → 메모리 + sessionStorage 캐시 (메뉴당 1회 호출)
+```
+
+키 미설정 시 → 일반 쿠팡 검색 URL로 fallback (사용자 가치 유지, 수익 0).
+
+### 한도 / 비용
+
+- 쿠팡 Deep Link API: 분당 60회 (충분)
+- Vercel Serverless 무료 티어: 월 100,000 호출 (DAU 1만 시점까지 무료)
+
+---
+
 ## 폴더 구조
 
 ```

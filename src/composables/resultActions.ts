@@ -1,3 +1,4 @@
+import { getCoupangSearchUrl } from '@/composables/coupangLink'
 import type { Menu, ResultAction } from '@/types'
 
 export function buildResultActions(menu: Menu): ResultAction[] {
@@ -12,8 +13,8 @@ export function buildResultActions(menu: Menu): ResultAction[] {
     {
       type: 'mealkit',
       label: '집에서 만들기',
-      url: `https://www.coupang.com/np/search?q=${q}`,
-      trackingId: 'coupang-search',
+      url: getCoupangSearchUrl(menu.name),
+      trackingId: 'coupang-partners',
     },
     {
       type: 'map',
