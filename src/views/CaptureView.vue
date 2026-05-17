@@ -19,6 +19,9 @@ const router = useRouter()
 const history = useHistoryStore()
 
 const isMobile = isMobileDevice()
+const isSecure = typeof window !== 'undefined' && (window.isSecureContext || window.location.hostname === 'localhost')
+const hasMediaApi = typeof navigator !== 'undefined' && !!navigator.mediaDevices?.getUserMedia
+const canUseCamera = isMobile && isSecure && hasMediaApi
 
 const errorMessage = ref<string | null>(null)
 const menuQuery = ref('')
@@ -123,7 +126,7 @@ async function onFileSelected(event: Event): Promise<void> {
   const file = target.files?.[0]
   if (!file) return
 
-  if (isMobile) {
+  if (canUseCamera) {
     isCapturing.value = true
     try {
       await persistPhoto(file)
@@ -192,7 +195,7 @@ function closeView(): void {
 }
 
 onMounted(() => {
-  if (isMobile) startCamera()
+  if (canUseCamera) startCamera()
 })
 
 onBeforeUnmount(() => {
@@ -216,7 +219,7 @@ onBeforeUnmount(() => {
     @change="onFileSelected"
   />
 
-  <main v-if="isMobile" class="min-h-dvh bg-black text-white flex flex-col">
+  <main v-if="canUseCamera" class="min-h-dvh bg-black text-white flex flex-col">
     <header class="flex items-center justify-between p-4 pt-safe">
       <button
         class="text-headline px-3 py-2 -mx-3 -my-2"
@@ -319,13 +322,47 @@ onBeforeUnmount(() => {
     <h1 class="text-large-title text-text-primary mb-2">
       사진으로 남기기
     </h1>
-    <p class="text-body text-text-secondary mb-8">
+    <p class="text-body text-text-secondary mb-6">
       모이면 한 주를 영상으로 돌려드려요
     </p>
 
+    <div
+      v-if="isMobile && !isSecure"
+      class="card mb-6 flex items-start gap-3"
+      style="background: var(--accent-soft);"
+    >
+      <svg viewBox="0 0 24 24" class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M12 8v5M12 16h.01" />
+      </svg>
+      <div class="flex-1">
+        <p class="text-callout text-text-primary font-semibold mb-1">
+          인앱 카메라는 HTTPS에서만 열려요
+        </p>
+        <p class="text-footnote text-text-secondary">
+          아래 버튼을 누르면 시스템 카메라가 열려요
+        </p>
+      </div>
+    </div>
+
     <section class="space-y-6">
       <button
-        v-if="!desktopPreviewUrl"
+        v-if="isMobile && !desktopPreviewUrl"
+        class="w-full py-12 rounded-3xl flex flex-col items-center justify-center gap-3 text-white transition-transform duration-fast active:scale-[0.98]"
+        style="background: var(--accent); box-shadow: 0 8px 24px -8px rgba(255, 122, 109, 0.5);"
+        @click="openFilePicker"
+      >
+        <svg viewBox="0 0 24 24" class="w-12 h-12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <rect x="3" y="6" width="18" height="14" rx="3" />
+          <circle cx="12" cy="13" r="4" />
+          <path d="M8 6l1.5-2h5L16 6" />
+        </svg>
+        <span class="text-title-3 font-bold">촬영하기</span>
+        <span class="text-footnote opacity-85">또는 갤러리에서 사진 선택</span>
+      </button>
+
+      <button
+        v-else-if="!desktopPreviewUrl"
         class="w-full aspect-square rounded-xl border-2 border-dashed transition-all duration-normal flex flex-col items-center justify-center gap-4 text-text-secondary group"
         :class="isDragOver
           ? 'border-accent bg-accent/5 scale-[0.99]'
