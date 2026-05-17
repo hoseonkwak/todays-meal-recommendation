@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="오늘의밥">
+  <rect width="512" height="512" rx="128" fill="#FF7A6D"/>
+  <ellipse cx="256" cy="305" rx="158" ry="22" fill="#FFFFFF" opacity="0.95"/>
+  <path d="M118 295 Q256 460 394 295 Z" fill="#FFFFFF"/>
+  <circle cx="200" cy="195" r="22" fill="#FFFFFF" opacity="0.9"/>
+  <circle cx="270" cy="170" r="18" fill="#FFFFFF" opacity="0.75"/>
+  <circle cx="318" cy="200" r="14" fill="#FFFFFF" opacity="0.6"/>
+</svg>

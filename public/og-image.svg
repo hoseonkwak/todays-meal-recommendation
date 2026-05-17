@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="오늘의 밥">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FFFCFA"/>
+      <stop offset="100%" stop-color="#FFE3DE"/>
+    </linearGradient>
+    <radialGradient id="blob1" cx="0.85" cy="0.2" r="0.4">
+      <stop offset="0%" stop-color="#FFB4A8" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#FFB4A8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blob2" cx="0.1" cy="0.9" r="0.4">
+      <stop offset="0%" stop-color="#FFD5B5" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#FFD5B5" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#blob1)"/>
+  <rect width="1200" height="630" fill="url(#blob2)"/>
+
+  <g transform="translate(880 130)">
+    <rect x="-110" y="-110" width="220" height="220" rx="56" fill="#FF7A6D"/>
+    <ellipse cx="0" cy="20" rx="80" ry="11" fill="#FFFFFF" opacity="0.95"/>
+    <path d="M-80 20 Q0 110 80 20 Z" fill="#FFFFFF"/>
+    <circle cx="-30" cy="-30" r="11" fill="#FFFFFF" opacity="0.9"/>
+    <circle cx="5" cy="-45" r="9" fill="#FFFFFF" opacity="0.75"/>
+    <circle cx="35" cy="-25" r="7" fill="#FFFFFF" opacity="0.6"/>
+  </g>
+
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Pretendard Variable', system-ui, sans-serif" fill="#1A1A1F">
+    <text x="80" y="260" font-size="48" font-weight="600" letter-spacing="-1.5" fill="#FF7A6D">
+      오늘의 밥
+    </text>
+    <text x="80" y="370" font-size="92" font-weight="700" letter-spacing="-3">
+      뭐 먹지?
+    </text>
+    <text x="80" y="438" font-size="92" font-weight="700" letter-spacing="-3">
+      5초면 정해줄게요.
+    </text>
+    <text x="80" y="520" font-size="32" font-weight="500" letter-spacing="-1" fill="#3C3C43" fill-opacity="0.7">
+      결정한 끼니를 한 컷씩 모으면,
+    </text>
+    <text x="80" y="562" font-size="32" font-weight="500" letter-spacing="-1" fill="#3C3C43" fill-opacity="0.7">
+      한 주를 영상으로 돌려드려요.
+    </text>
+  </g>
+</svg>

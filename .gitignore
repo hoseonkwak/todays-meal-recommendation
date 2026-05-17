@@ -3,13 +3,16 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
-# Environment variables
+# Environment variables (NEVER COMMIT)
 .env
 .env.local
 .env.*.local
+.env.development.local
+.env.production.local
 
-# IDE
+# IDE / Editor
 .vscode/
 .idea/
 *.swp
@@ -25,6 +28,25 @@ dist/
 build/
 *.log
 
-# Temporary files
+# Output (산출물, 빌드와 분리)
+output/
+
+# Cache / Temporary
 *.tmp
 .cache/
+.parcel-cache/
+.vite/
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+
+# Backup files (생성 자동 백업)
+*.backup.ts
+*.v1.backup.*

@@ -1,22 +1,32 @@
 {
   "name": "today-meal",
-  "version": "1.0.0",
-  "description": "식사 메뉴 추천 웹 애플리케이션",
-  "main": "src/index.html",
+  "version": "2.0.0-dev",
+  "description": "5초 안에 끼니를 결정하게 해주는 도구. 결정한 끼니를 한 컷씩 모으면 한 주를 영상으로 돌려준다.",
+  "private": true,
+  "type": "module",
   "scripts": {
-    "dev": "npx serve src -p 3000",
-    "start": "npx serve src -p 3000"
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "type-check": "vue-tsc --noEmit",
+    "verify:menus": "node scripts/verify-menus.mjs",
+    "verify:recommendation": "tsx --tsconfig tsconfig.app.json scripts/verify-recommendation.ts"
   },
-  "keywords": [
-    "meal",
-    "recommendation",
-    "food",
-    "menu"
-  ],
-  "author": "Kwak Hoseon <kwakhoseon@gmail.com>",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yourusername/today-meal.git"
+  "dependencies": {
+    "pinia": "^2.2.6",
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/tsconfig": "^0.7.0",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16",
+    "tsx": "^4.21.0",
+    "typescript": "~5.6.3",
+    "vite": "^6.0.3",
+    "vue-tsc": "^2.1.10"
   }
 }

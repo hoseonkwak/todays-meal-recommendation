@@ -1,0 +1,22 @@
+{
+  "name": "today-meal",
+  "version": "1.0.0",
+  "description": "식사 메뉴 추천 웹 애플리케이션",
+  "main": "src/index.html",
+  "scripts": {
+    "dev": "npx serve src -p 3000",
+    "start": "npx serve src -p 3000"
+  },
+  "keywords": [
+    "meal",
+    "recommendation",
+    "food",
+    "menu"
+  ],
+  "author": "Kwak Hoseon <kwakhoseon@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/today-meal.git"
+  }
+}
