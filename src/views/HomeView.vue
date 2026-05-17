@@ -74,7 +74,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <main class="relative px-5 pt-12 pb-10">
+  <main class="relative isolate px-5 pt-12 pb-10">
     <span
       class="decor-blob"
       style="top: -60px; right: -40px; width: 240px; height: 240px; background: radial-gradient(circle, #FFB4A8 0%, transparent 70%);"
@@ -300,6 +300,16 @@ onMounted(async () => {
             class="decor-blob"
             style="bottom: -60px; left: -40px; width: 180px; height: 180px; background: radial-gradient(circle, #FFE3DE 0%, transparent 70%);"
           />
+
+          <button
+            class="absolute top-3 right-3 w-9 h-9 rounded-full bg-surface flex items-center justify-center text-text-secondary z-10 transition-transform duration-fast active:scale-90"
+            aria-label="닫기"
+            @click="dismissWelcome"
+          >
+            <svg viewBox="0 0 24 24" class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
+              <path d="M6 6l12 12M6 18L18 6" />
+            </svg>
+          </button>
 
           <div class="relative pt-6 sm:pt-2 pb-2">
             <div class="text-center mb-6">

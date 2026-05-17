@@ -242,11 +242,11 @@
   /* === 데코 블롭 (헤더 배경 장식) === */
   .decor-blob {
     position: absolute;
-    pointer-events: none;
+    pointer-events: none !important;
     border-radius: 9999px;
     filter: blur(40px);
     opacity: 0.55;
-    z-index: 0;
+    z-index: -1;
   }
   .dark .decor-blob {
     opacity: 0.35;
@@ -373,8 +373,12 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(2px);
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .dark .modal-backdrop {
+    background: rgba(0, 0, 0, 0.7);
   }
   @media (min-width: 640px) {
     .modal-backdrop {
